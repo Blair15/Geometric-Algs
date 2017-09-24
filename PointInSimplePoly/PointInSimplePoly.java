@@ -1,15 +1,20 @@
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class PointInSimplePoly {
 
     public static void main(String[] args){
 
-		ArrayList<Point> vertices = getUsersCoords();
+        ArrayList<Point> vertices = getUsersCoords();
 
-		for(int i = 0; i<vertices.size(); i++) {
-		    System.out.println(vertices.get(i));	
-		}
+        LinkedList<Edge> edges = buildEdges(vertices);
+
+        int i = 0;
+        while(i<edges.size()){
+            System.out.println(edges.get(i));
+            i++;
+        }
 
     }
 
@@ -40,12 +45,21 @@ public class PointInSimplePoly {
         return vertices;
     }//end getUsersCoords
 
-    //Given an ArrayList of String representations of points, return
-    //an ArrayList
-    //public static ArrayList<Point> constructPoints(ArrayList<String> stringPoints) {
+    //Given an ArrayList of Points construct a linked list
+    //of edges
+    public static LinkedList<Edge> buildEdges(ArrayList<Point> points) {
 
+        LinkedList<Edge> edges = new LinkedList<Edge>();
 
+        for(int i = 0; i<points.size()-1; i++) {
+            Edge newEdge = new Edge(points.get(i), points.get(i+1));
+            edges.add(newEdge);
+        }
 
-    //}//end constructPoints
-	
+        Edge lastEdge = new Edge(points.get(points.size()-1), points.get(0));
+        edges.add(lastEdge);
+
+        return edges;
+
+    }//end buildEdges	
 }

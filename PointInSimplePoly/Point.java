@@ -15,7 +15,7 @@ public class Point{
     public void setY(int nY){ this.y = nY; }
 
     public String toString(){
-        return x + ", " + y;
+        return "("+ x + "," + y+ ")";
     }
 
 }
