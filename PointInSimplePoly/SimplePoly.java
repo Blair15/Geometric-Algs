@@ -2,17 +2,17 @@ import java.util.LinkedList;
 
 public class SimplePoly{
 
-    private LinkedList edges;
+    private LinkedList<Edge> edges;
 	
 	public SimplePoly() {
-		this.edges = new LinkedList();
+		this.edges = new LinkedList<Edge>();
 	}
 
-	public SimplePoly(LinkedList e) {
+	public SimplePoly(LinkedList<Edge> e) {
 		edges = e;
 	}
 	
-	public LinkedList getEdges() {return edges;}
+	public LinkedList<Edge> getEdges() {return edges;}
 	public void addEdge(Edge ed){ edges.add(ed); }
 	
 }

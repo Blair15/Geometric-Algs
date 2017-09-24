@@ -6,24 +6,25 @@ public class PointInSimplePoly {
 
     public static void main(String[] args){
 
-        ArrayList<Point> vertices = getUsersCoords();
+        Scanner scan = new Scanner(System.in);
+
+        ArrayList<Point> vertices = getUsersCoords(scan);
 
         LinkedList<Edge> edges = buildEdges(vertices);
 
-        int i = 0;
-        while(i<edges.size()){
-            System.out.println(edges.get(i));
-            i++;
-        }
+        SimplePoly shape = new SimplePoly(edges);
 
+        Point checkPoint = makeCheckPoint(scan);
+
+        System.out.println(checkPoint);
+
+        scan.close();
     }
 
     //Get a series of coords from the user, each coord is a vertice of
     //the simple poly to be contsructed, store coords in an ArrayList
     //to be passed back to the main exectuion of the program
-    public static ArrayList<Point> getUsersCoords() {
-    
-        Scanner scan = new Scanner(System.in);
+    public static ArrayList<Point> getUsersCoords(Scanner scan) {
 		
         System.out.println("Enter a series of co-ordinates, to finish enter 'END':");
 		
@@ -40,7 +41,6 @@ public class PointInSimplePoly {
             vertices.add(usersPoint);
 	    userInput = scan.next();
         }
-        scan.close();
 		
         return vertices;
     }//end getUsersCoords
@@ -61,5 +61,19 @@ public class PointInSimplePoly {
 
         return edges;
 
-    }//end buildEdges	
+    }//end buildEdges
+
+    public static Point makeCheckPoint(Scanner scan) {
+
+        System.out.println("Enter a further point to be checked if it's in or out of poly:");
+
+        String userInput = scan.next();
+
+        int xCoord = Integer.parseInt(userInput.split(",")[0]);
+        int yCoord = Integer.parseInt(userInput.split(",")[1]);
+
+        Point checkPoint = new Point(xCoord,yCoord);
+
+        return checkPoint;
+    }	
 }
